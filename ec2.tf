@@ -61,7 +61,7 @@ resource "aws_instance" "target" {
   }
   user_data = <<EOF
 #!/bin/bash
-sudo bash -c "echo ${data.terraform_remote_state.hcp_vault_manage.outputs.vault_boundary_ssh_ca} > /etc/ssh/ca-key.pub" \
+sudo bash -c "echo ${data.terraform_remote_state.vault_config.outputs.vault_boundary_ssh_ca} > /etc/ssh/ca-key.pub" \
 sudo chown 1000:1000 /etc/ssh/ca-key.pub
 sudo chmod 644 /etc/ssh/ca-key.pub
 sudo bash -c "echo TrustedUserCAKeys /etc/ssh/ca-key.pub >> /etc/ssh/sshd_config"
